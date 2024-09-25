@@ -4,149 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Port of Cape Town - Truck Booking System</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .container {
-            max-width: 500px;
-            width: 100%;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            color: #003366;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        input[type="text"], input[type="password"], input[type="date"], input[type="time"], textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #003366;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #005399;
-        }
-
-        .success-barcode {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        #booking-page, #success-page {
-            display: none;
-        }
-
-        .barcode {
-            margin-top: 20px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <!-- Login Page -->
-    <div class="container" id="login-page">
-        <h1>Port of Cape Town - Truck Booking System</h1>
-        <h2>Transporter login</h2>
-        <form id="login-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br>
+    <div id="login-page">
+        <header>
+            <h1>Port of Cape Town - Truck Booking System</h1>
+        </header>
+        <main>
+            <h2>Transporter login</h2>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br>
 
-            <button type="button" onclick="login()">Login</button>
-        </form>
+                <button type="button" onclick="login()">Login</button>
+            </form>
+            <p class="info-text">
+                Transporters are responsible for ensuring the accuracy of all data entered into the booking system.<br>
+                Booking slots are available in 15-minute intervals.<br>
+                The booking system operates 24/7. Transporters are encouraged to utilize off-peak hours to reduce congestion.
+                Night shift deliveries are particularly encouraged for certain cargo types, such as reefers, to balance traffic volume.
+                The barcode will be scanned at the gate to verify the booking and allow entry.
+            </p>
+        </main>
+        <footer>
+            <p>2024 Demo Website created by Carlie Solomon, Carla Meyer, Fia de Bruyn, and Francois Joubert</p>
+        </footer>
     </div>
 
     <!-- Booking Page -->
-    <div class="container" id="booking-page">
-        <h1>Port of Cape Town - Truck Booking System</h1>
-        <h2>Book a Slot</h2>
-        <form id="booking-form">
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required><br>
+    <div id="booking-page" style="display:none;">
+        <header>
+            <h1>Port of Cape Town - Truck Booking System</h1>
+        </header>
+        <main>
+            <h2>Book Your Slot</h2>
+            <form id="booking-form">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required><br>
 
-            <label for="time-slot">Time Slot:</label>
-            <input type="time" id="time-slot" name="time-slot" required><br>
+                <label for="time-slot">Time Slot:</label>
+                <input type="time" id="time-slot" name="time-slot" required><br>
 
-            <label for="container-info">Container Info:</label>
-            <textarea id="container-info" name="container-info" required></textarea><br>
+                <label for="container-info">Container Info:</label>
+                <textarea id="container-info" name="container-info" rows="4" required></textarea><br>
 
-            <button type="button" onclick="bookSlot()">Book Slot</button>
-        </form>
+                <button type="button" onclick="bookSlot()">Book Slot</button>
+            </form>
+        </main>
+        <footer>
+            <p>2024 Demo Website created by Carlie Solomon, Carla Meyer, Fia de Bruyn, and Francois Joubert</p>
+        </footer>
     </div>
 
-    <!-- Success Page -->
-    <div class="container" id="success-page">
-        <h1>Booking Successful</h1>
-        <p>Your booking is confirmed. Here is your barcode:</p>
-        <div class="barcode">
-            <img src="https://barcode.tec-it.com/barcode.ashx?data=00035%2054562&code=EAN13&translate-esc=off" alt="Barcode">
-        </div>
+    <!-- Booking Success Page -->
+    <div id="success-page" style="display:none;">
+        <header>
+            <h1>Port of Cape Town - Truck Booking System</h1>
+        </header>
+        <main>
+            <h2>Booking Successful</h2>
+            <p>Your booking is confirmed. Here is your barcode:</p>
+            <img src="barcode.png" alt="Barcode">
+        </main>
+        <footer>
+            <p>2024 Demo Website created by Carlie Solomon, Carla Meyer, Fia de Bruyn, and Francois Joubert</p>
+        </footer>
     </div>
 
     <script>
         function login() {
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
 
-            // Check if the username and password match the correct values
-            if (username === "solomon" && password === "1234") {
-                // If correct, hide the login page and show the booking page
-                document.getElementById("login-page").style.display = "none";
-                document.getElementById("booking-page").style.display = "block";
+            // Check if the username is "solomon" and the password is "1234"
+            if (username === 'solomon' && password === '1234') {
+                // Hide the login page and show the booking page
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('booking-page').style.display = 'block';
             } else {
-                // If incorrect, display an error message
-                alert("Invalid username or password! Please try again.");
+                // Show an error message if login fails
+                alert('Incorrect username or password. Please try again.');
             }
         }
 
         function bookSlot() {
-            const date = document.getElementById("date").value;
-            const timeSlot = document.getElementById("time-slot").value;
-            const containerInfo = document.getElementById("container-info").value;
-
-            if (date && timeSlot && containerInfo) {
-                // If all fields are filled, proceed to success page
-                document.getElementById("booking-page").style.display = "none";
-                document.getElementById("success-page").style.display = "block";
-            } else {
-                // Show an alert if any fields are missing
-                alert("Please fill in all fields to book the slot.");
-            }
+            // Hide the booking page and show the success page
+            document.getElementById('booking-page').style.display = 'none';
+            document.getElementById('success-page').style.display = 'block';
         }
     </script>
-
 </body>
 </html>
