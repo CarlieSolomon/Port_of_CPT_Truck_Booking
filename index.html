@@ -50,6 +50,7 @@
             box-sizing: border-box;
         }
 
+        /* Adjust the login button position */
         button {
             padding: 10px;
             background-color: #003366;
@@ -57,16 +58,11 @@
             border: none;
             cursor: pointer;
             width: 100%;
+            margin-top: 20px; /* Moved button lower */
         }
 
         button:hover {
             background-color: #005599;
-        }
-
-        .info-text {
-            font-size: 0.9em;
-            margin: 20px 20px 0;
-            text-align: center;
         }
 
         /* Center Username and Password fields */
@@ -87,6 +83,15 @@
             font-size: 0.8em;
             width: 100%;
         }
+
+        /* Feedback styles for login button */
+        .success {
+            background-color: green;
+        }
+
+        .error {
+            background-color: red;
+        }
     </style>
 </head>
 <body>
@@ -104,7 +109,7 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required><br>
 
-                <button type="button" onclick="login()">Login</button>
+                <button type="button" id="login-button" onclick="login()">Login</button>
             </form>
         </main>
 
@@ -186,15 +191,22 @@
         function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
+            const loginButton = document.getElementById('login-button');
+
+            // Reset button colors before validation
+            loginButton.classList.remove('success', 'error');
 
             // Check if the username is "solomon" and the password is "1234"
             if (username === 'solomon' && password === '1234') {
-                // Hide the login page and show the booking page
-                document.getElementById('login-page').style.display = 'none';
-                document.getElementById('booking-page').style.display = 'block';
+                // If correct, change button to green and redirect
+                loginButton.classList.add('success');
+                setTimeout(function() {
+                    document.getElementById('login-page').style.display = 'none';
+                    document.getElementById('booking-page').style.display = 'block';
+                }, 500);  // Add a delay to show the button color change
             } else {
-                // Show an error message if login fails
-                alert('Incorrect username or password. Please try again.');
+                // If incorrect, change button to red
+                loginButton.classList.add('error');
             }
         }
 
