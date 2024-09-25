@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Port of Cape Town - Truck Booking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #003366;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="password"], input[type="date"], input[type="time"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #003366;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005399;
+        }
+
+        .success-barcode {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #booking-page, #success-page {
+            display: none;
+        }
+
+        .barcode {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Page -->
+    <div class="container" id="login-page">
+        <h1>Port of Cape Town - Truck Booking System</h1>
+        <h2>Transporter login</h2>
+        <form id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+
+            <button type="button" onclick="login()">Login</button>
+        </form>
+    </div>
+
+    <!-- Booking Page -->
+    <div class="container" id="booking-page">
+        <h1>Port of Cape Town - Truck Booking System</h1>
+        <h2>Book a Slot</h2>
+        <form id="booking-form">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required><br>
+
+            <label for="time-slot">Time Slot:</label>
+            <input type="time" id="time-slot" name="time-slot" required><br>
+
+            <label for="container-info">Container Info:</label>
+            <textarea id="container-info" name="container-info" required></textarea><br>
+
+            <button type="button" onclick="bookSlot()">Book Slot</button>
+        </form>
+    </div>
+
+    <!-- Success Page -->
+    <div class="container" id="success-page">
+        <h1>Booking Successful</h1>
+        <p>Your booking is confirmed. Here is your barcode:</p>
+        <div class="barcode">
+            <img src="https://barcode.tec-it.com/barcode.ashx?data=00035%2054562&code=EAN13&translate-esc=off" alt="Barcode">
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Check if the username and password match the correct values
+            if (username === "solomon" && password === "1234") {
+                // If correct, hide the login page and show the booking page
+                document.getElementById("login-page").style.display = "none";
+                document.getElementById("booking-page").style.display = "block";
+            } else {
+                // If incorrect, display an error message
+                alert("Invalid username or password! Please try again.");
+            }
+        }
+
+        function bookSlot() {
+            const date = document.getElementById("date").value;
+            const timeSlot = document.getElementById("time-slot").value;
+            const containerInfo = document.getElementById("container-info").value;
+
+            if (date && timeSlot && containerInfo) {
+                // If all fields are filled, proceed to success page
+                document.getElementById("booking-page").style.display = "none";
+                document.getElementById("success-page").style.display = "block";
+            } else {
+                // Show an alert if any fields are missing
+                alert("Please fill in all fields to book the slot.");
+            }
+        }
+    </script>
+
+</body>
+</html>
