@@ -23,6 +23,23 @@
             min-height: 100vh; /* Ensure the page takes the full height */
         }
 
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-color: #003366;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        header img {
+            position: absolute;
+            left: 10px;
+            height: 50px; /* Adjust the logo size */
+        }
+
         main {
             flex-grow: 1; /* Allow the content to take as much space as possible */
             display: flex; /* Center content vertically and horizontally */
@@ -97,6 +114,7 @@
     <!-- Login Page -->
     <div id="login-page">
         <header>
+            <img src="logo.png" alt="Logo"> <!-- Logo added here -->
             <h1>Port of Cape Town - Truck Booking System</h1>
         </header>
         <main>
@@ -130,6 +148,7 @@
     <!-- Booking Page -->
     <div id="booking-page" style="display:none;">
         <header>
+            <img src="logo.png" alt="Logo"> <!-- Logo added here -->
             <h1>Port of Cape Town - Truck Booking System</h1>
         </header>
         <main>
@@ -158,6 +177,7 @@
     <!-- Booking Success Page -->
     <div id="success-page" style="display:none;">
         <header>
+            <img src="logo.png" alt="Logo"> <!-- Logo added here -->
             <h1>Port of Cape Town - Truck Booking System</h1>
         </header>
         <main>
