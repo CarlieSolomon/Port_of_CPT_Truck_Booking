@@ -6,10 +6,12 @@ body {
 }
 
 header {
+    display: flex;
+    align-items: flex-start; /* Aligns items to the top */
+    justify-content: center;
     background-color: #002f87;
     color: white;
     padding: 5px 20px; /* Reduced padding */
-    text-align: center;
 }
 
 header img {
