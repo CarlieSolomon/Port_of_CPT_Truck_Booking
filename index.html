@@ -38,7 +38,7 @@
             text-align: center; /* Center the form content */
         }
 
-        form input {
+        form input, form select {
             width: 100%;
             margin-bottom: 10px;
             padding: 8px;
@@ -142,7 +142,12 @@
                 <input type="time" id="time-slot" name="time-slot" required><br>
 
                 <label for="container-info">Container Info:</label>
-                <textarea id="container-info" name="container-info" rows="4" required></textarea><br>
+                <select id="container-info" name="container-info" required>
+                    <option value="Dry Container">Dry Container</option>
+                    <option value="Reefer Container">Reefer Container</option>
+                    <option value="Open Top Container">Open Top Container</option>
+                    <option value="Other">Other</option>
+                </select><br>
 
                 <button type="button" onclick="bookSlot()">Book Slot</button>
             </form>
@@ -159,7 +164,7 @@
             <p>Your booking is confirmed. Here is your barcode:</p>
             
             <!-- Barcode Image with reduced size -->
-            <img src="barcode.jpg" alt="Barcode" style="max-width: 50%; height: auto;">
+            <img src="barcode.png" alt="Barcode" style="max-width: 50%; height: auto;">
         </main>
     </div>
 
