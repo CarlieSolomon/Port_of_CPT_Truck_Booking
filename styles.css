@@ -12,6 +12,13 @@ header {
     text-align: center;
 }
 
+header img {
+    position: absolute;
+    left: 10px;
+    height: 50px; /* Adjust the logo size */
+    top: 5px; /* Move the logo up by 5px */
+}
+
 main {
     padding: 20px;
     text-align: center;
