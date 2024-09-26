@@ -14,9 +14,9 @@ header {
 
 header img {
     position: absolute;
-    left: 10px;
+    left: 20px;
     height: 70px; /* Increased logo size */
-    top: -30px; /* Move the logo up */
+    top: -100px; /* Move the logo up */
 }
 
 main {
