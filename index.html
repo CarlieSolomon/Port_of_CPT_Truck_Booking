@@ -139,7 +139,8 @@
                 <input type="date" id="date" name="date" required><br>
 
                 <label for="time-slot">Time Slot:</label>
-                <input type="time" id="time-slot" name="time-slot" required><br>
+                <!-- Added step="900" for 15-minute intervals -->
+                <input type="time" id="time-slot" name="time-slot" step="900" required><br>
 
                 <label for="container-info">Container Info:</label>
                 <select id="container-info" name="container-info" required>
