@@ -25,18 +25,22 @@
 
         header {
             display: flex;
-            align-items: center; /* Vertically centers the content */
+            align-items: center;
             justify-content: center;
+            position: relative;
             background-color: #003366;
             color: white;
             padding: 10px;
             text-align: center;
-            height: 80px; /* Set a consistent height for the header */
         }
-        
+
         header img {
-            height: 70px; /* Set the logo size */
-            margin-right: 20px; /* Space between logo and title */
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            
         }
 
         main {
@@ -93,6 +97,7 @@
             margin-top: auto; /* Push the info text to the bottom before the footer */
             margin-bottom: 20px; /* Space between info text and footer */
             padding-top: 40px; /* Add padding to move the info text further down */
+            font-weight: bold; /* Make all text in this section bold */
         }
 
         /* Success and Error Styles for login button */
