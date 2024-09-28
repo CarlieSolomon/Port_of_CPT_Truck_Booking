@@ -162,8 +162,9 @@
                 <input type="date" id="date" name="date" required><br>
 
                 <label for="time-slot">Time Slot:</label>
-                <!-- 15-minute intervals using step="900" (15 * 60 seconds) -->
-                <input type="time" id="time-slot" name="time-slot" step="900" required><br>
+				<select id="time-slot" name="time-slot" required>
+					<!-- JavaScript will populate this with 15-minute intervals -->
+				</select><br>
 
                 <label for="container-info">Container Info:</label>
                 <select id="container-info" name="container-info" required>
@@ -172,6 +173,12 @@
                     <option value="Open Top Container">Open Top Container</option>
                     <option value="Other">Other</option>
                 </select><br>
+				
+				<label for="container-size">Container Size:</label>
+				<select id="container-size" name="container-size" required>
+					<option value="20ft">20ft</option>
+					<option value="40ft">40ft</option>
+				</select><br>
 
                 <button type="button" onclick="bookSlot()">Book Slot</button>
             </form>
@@ -194,6 +201,26 @@
     </div>
 
     <script>
+		function populateTimeSlots() {
+			const timeSlotSelect = document.getElementById('time-slot');
+			const startTime = 0; // Midnight
+			const endTime = 24 * 60; // 24 hours in minutes
+
+			for (let time = startTime; time < endTime; time += 15) {
+				const hours = String(Math.floor(time / 60)).padStart(2, '0');
+				const minutes = String(time % 60).padStart(2, '0');
+				const timeString = `${hours}:${minutes}`;
+				const option = document.createElement('option');
+				option.value = timeString;
+				option.textContent = timeString;
+				timeSlotSelect.appendChild(option);
+			}
+		}
+
+		// Call the function to populate the time slots when the page loads
+		window.onload = populateTimeSlots;
+	
+	
         function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
