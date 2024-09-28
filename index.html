@@ -12,9 +12,16 @@
             padding: 0;
             height: 100%;
             font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
+           /* display: flex;
+            flex-direction: column; */
         }
+		
+		.page-container {
+			display: flex;
+			flex-direction: column;
+			min-height: 100vh; /* Ensure the page takes the full height */
+			justify-content: space-between; /* Space out header, main, and footer */
+		}
 
         /* Container to push footer to the bottom */
         #login-page, #booking-page, #success-page {
@@ -45,12 +52,13 @@
         }
 
         main {
-            flex-grow: 1; /* Allow the content to take as much space as possible */
-            display: flex; /* Center content vertically and horizontally */
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            flex-grow: 1; /* Allow the main content to take as much space as possible */
+			display: flex; /* Center content vertically and horizontally */
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			width: 100%;
         }
 
         form {
@@ -83,11 +91,11 @@
 
         /* Footer Styling */
         footer {
-            background-color: lightgrey;
-            color: black;
-            text-align: center;
-            padding: 15px;
-            font-size: 0.8em;
+			background-color: lightgrey;
+			color: black;
+			text-align: center;
+			padding: 15px;
+			font-size: 0.8em;
         }
 
         /* Info Text Styles */
@@ -115,7 +123,7 @@
 </head>
 <body>
     <!-- Login Page -->
-    <div id="login-page">
+    <div id="login-page" class="page-container">
         <header>
             <img src="logo.png" alt="Logo"> <!-- Logo added here -->
             <h1>Port of Cape Town - Truck Booking System</h1>
@@ -147,7 +155,7 @@
     </div>
 
     <!-- Booking Page -->
-    <div id="booking-page" style="display:none;">
+    <div id="booking-page" class="page-container" style="display:none;">
         <header>
             <img src="logo.png" alt="Logo"> <!-- Logo added here -->
             <h1>Port of Cape Town - Truck Booking System</h1>
@@ -187,7 +195,7 @@
     </div>
 
     <!-- Booking Success Page -->
-    <div id="success-page" style="display:none;">
+    <div id="success-page" class="page-container" style="display:none;">
         <header>
             <img src="logo.png" alt="Logo"> <!-- Logo added here -->
             <h1>Port of Cape Town - Truck Booking System</h1>
@@ -224,32 +232,32 @@
         window.onload = populateTimeSlots;
 
         function login() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const loginButton = document.getElementById('login-button');
+			const username = document.getElementById('username').value;
+			const password = document.getElementById('password').value;
+			const loginButton = document.getElementById('login-button');
 
-            // Reset button colors before validation
-            loginButton.classList.remove('success', 'error');
+			// Reset button colors before validation
+			loginButton.classList.remove('success', 'error');
 
-            // Check if the username is "solomon" and the password is "1234"
-            if (username === 'solomon' && password === '1234') {
-                // If correct, change button to green and redirect
-                loginButton.classList.add('success');
-                setTimeout(function() {
-                    document.getElementById('login-page').style.display = 'none';
-                    document.getElementById('booking-page').style.display = 'block';
-                }, 500);  // Add a delay to show the button color change
-            } else {
-                // If incorrect, change button to red
-                loginButton.classList.add('error');
-            }
-        }
+			// Check if the username is "solomon" and the password is "1234"
+			if (username === 'solomon' && password === '1234') {
+				// If correct, change button to green and redirect
+				loginButton.classList.add('success');
+				setTimeout(function() {
+					document.getElementById('login-page').style.display = 'none';
+					document.getElementById('booking-page').style.display = 'flex';  // Use 'flex' to maintain layout
+				}, 500);  // Add a delay to show the button color change
+			} else {
+				// If incorrect, change button to red
+				loginButton.classList.add('error');
+			}
+		}
 
-        function bookSlot() {
-            // Hide the booking page and show the success page
-            document.getElementById('booking-page').style.display = 'none';
-            document.getElementById('success-page').style.display = 'block';
-        }
+		function bookSlot() {
+			// Hide the booking page and show the success page
+			document.getElementById('booking-page').style.display = 'none';
+			document.getElementById('success-page').style.display = 'flex';  // Use 'flex' to maintain layout
+		}
     </script>
 </body>
 </html>
