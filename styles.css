@@ -1,78 +1,224 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Port of Cape Town - Truck Booking System</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
 
-header {
-    background-color: #002f87;
-    color: white;
-    padding: 5px 20px; /* Reduced padding */
-    text-align: center;
-}
+        /* Container to push footer to the bottom */
+        #login-page, #booking-page, #success-page {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the page takes the full height */
+        }
 
-header img {
-    position: absolute;
-    left: 10px;
-    height: 70px; /* Increased logo size */
-    top: 0px; /* Move the logo up */
-}
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-color: #003366;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
 
-main {
-    padding: 20px;
-    text-align: center;
-}
+        header img {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            
+        }
 
-h2 {
-    margin-bottom: 20px;
-}
+        main {
+            flex-grow: 1; /* Allow the content to take as much space as possible */
+            display: flex; /* Center content vertically and horizontally */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
 
-form {
-    display: inline-block;
-    text-align: left;
-}
+        form {
+            margin: 20px auto;
+            max-width: 300px;
+            text-align: center; /* Center the form content */
+        }
 
-label {
-    display: block;
-    margin: 10px 0 5px;
-}
+        form input, form select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            box-sizing: border-box;
+            text-align: center; /* Center text in input fields */
+        }
 
-input, textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+        /* Adjust the login button position */
+        button {
+            padding: 10px;
+            background-color: #003366;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px; /* Moved button lower */
+        }
 
-button {
-    background-color: #0056b3;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+        button:hover {
+            background-color: #005599;
+        }
 
-button:hover {
-    background-color: #003f7a;
-}
+        /* Footer Styling */
+        footer {
+            background-color: lightgrey;
+            color: black;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.8em;
+        }
+        /* Info Text Styles */
+		.info-text {
+			font-size: 12px;
+			text-align: center; /* Center the text */
+			margin: auto; /* Center it vertically */
+			padding: 10px; /* Add padding for spacing */
+			margin-top: auto; /* Push the info text to the bottom before the footer */
+			margin-bottom: 20px; /* Space between info text and footer */
+			padding-top: 40px; /* Add padding to move the info text further down */
+			font-weight: bold; /* Make all text in this section bold */
+			line-height: 4; /* Increased line height for better spacing */
+		}
 
-footer {
-    background-color: #ddd;
-    padding: 10px;
-    text-align: center;
-    margin-top: 20px;
-}
-/*
-.info-text {
-    font-size: 12px;
-    margin-top: 20px;
-    color: #555;
-}
-*/
-img {
-    margin-top: 20px;
-    max-width: 300px;
-}
+        /* Success and Error Styles for login button */
+        .success {
+            background-color: green;
+        }
+
+        .error {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page">
+        <header>
+            <img src="logo.png" alt="Logo"> <!-- Logo added here -->
+            <h1>Port of Cape Town - Truck Booking System</h1>
+        </header>
+        <main>
+            <h2>Transporter Login</h2>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br>
+
+                <button type="button" id="login-button" onclick="login()">Login</button>
+            </form>
+
+            <!-- Info text only for login page -->
+            <div class="info-text">
+                Transporters are responsible for ensuring the accuracy of all data entered into the booking system.<br>
+                Booking slots are available in 15-minute intervals.<br>
+                The booking system operates 24/7. Transporters are encouraged to utilize off-peak hours to reduce congestion.<br>
+                Night shift deliveries are particularly encouraged for certain cargo types, such as reefers, to balance traffic volume.<br>
+                The barcode will be scanned at the gate to verify the booking and allow entry.
+            </div>
+        </main>
+
+        <!-- Footer only for login page -->
+        <footer>
+            <p>2024 - Demo Website created by Carlie Solomon, Carla Meyer, Fia de Bruyn and Francois Joubert</p>
+        </footer>
+    </div>
+
+    <!-- Booking Page -->
+    <div id="booking-page" style="display:none;">
+        <header>
+            <img src="logo.png" alt="Logo"> <!-- Logo added here -->
+            <h1>Port of Cape Town - Truck Booking System</h1>
+        </header>
+        <main>
+            <h2>Book Your Slot</h2>
+            <form id="booking-form">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required><br>
+
+                <label for="time-slot">Time Slot:</label>
+                <!-- 15-minute intervals using step="900" (15 * 60 seconds) -->
+                <input type="time" id="time-slot" name="time-slot" step="900" required><br>
+
+                <label for="container-info">Container Info:</label>
+                <select id="container-info" name="container-info" required>
+                    <option value="Dry Container">Dry Container</option>
+                    <option value="Reefer Container">Reefer Container</option>
+                    <option value="Open Top Container">Open Top Container</option>
+                    <option value="Other">Other</option>
+                </select><br>
+
+                <button type="button" onclick="bookSlot()">Book Slot</button>
+            </form>
+        </main>
+    </div>
+
+    <!-- Booking Success Page -->
+    <div id="success-page" style="display:none;">
+        <header>
+            <img src="logo.png" alt="Logo"> <!-- Logo added here -->
+            <h1>Port of Cape Town - Truck Booking System</h1>
+        </header>
+        <main>
+            <h2>Booking Successful</h2>
+            <p>Your booking is confirmed. Here is your barcode:</p>
+            
+            <!-- Barcode Image with reduced size -->
+            <img src="barcode.png" alt="Barcode" style="max-width: 50%; height: auto;">
+        </main>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const loginButton = document.getElementById('login-button');
+
+            // Reset button colors before validation
+            loginButton.classList.remove('success', 'error');
+
+            // Check if the username is "solomon" and the password is "1234"
+            if (username === 'solomon' && password === '1234') {
+                // If correct, change button to green and redirect
+                loginButton.classList.add('success');
+                setTimeout(function() {
+                    document.getElementById('login-page').style.display = 'none';
+                    document.getElementById('booking-page').style.display = 'block';
+                }, 500);  // Add a delay to show the button color change
+            } else {
+                // If incorrect, change button to red
+                loginButton.classList.add('error');
+            }
+        }
+
+        function bookSlot() {
+            // Hide the booking page and show the success page
+            document.getElementById('booking-page').style.display = 'none';
+            document.getElementById('success-page').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
