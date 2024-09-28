@@ -37,12 +37,11 @@
         header img {
             margin: 0;
             position: absolute;
-			left: 10px;
+            left: 10px;
             height: 70px; /* Increased logo size */
             top: 50%;
             -ms-transform: translateY(-50%);
             transform: translateY(-50%);
-            
         }
 
         main {
@@ -68,7 +67,6 @@
             text-align: center; /* Center text in input fields */
         }
 
-        /* Adjust the login button position */
         button {
             padding: 10px;
             background-color: #003366;
@@ -90,19 +88,20 @@
             text-align: center;
             padding: 15px;
             font-size: 0.8em;
-        }
+        }
+
         /* Info Text Styles */
-	.info-text {
-		font-size: 12px;
-		text-align: center; /* Center the text */
-		margin: auto; /* Center it vertically */
-		padding: 10px; /* Add padding for spacing */
-		margin-top: auto; /* Push the info text to the bottom before the footer */
-		margin-bottom: 20px; /* Space between info text and footer */
-		padding-top: 40px; /* Add padding to move the info text further down */
-		font-weight: bold; /* Make all text in this section bold */
-		line-height: 4; /* Increased line height for better spacing */
-	}
+        .info-text {
+            font-size: 12px;
+            text-align: center; /* Center the text */
+            margin: auto; /* Center it vertically */
+            padding: 10px; /* Add padding for spacing */
+            margin-top: auto; /* Push the info text to the bottom before the footer */
+            margin-bottom: 20px; /* Space between info text and footer */
+            padding-top: 40px; /* Add padding to move the info text further down */
+            font-weight: bold; /* Make all text in this section bold */
+            line-height: 4; /* Increased line height for better spacing */
+        }
 
         /* Success and Error Styles for login button */
         .success {
@@ -133,7 +132,6 @@
                 <button type="button" id="login-button" onclick="login()">Login</button>
             </form>
 
-            <!-- Info text only for login page -->
             <div class="info-text">
                 Transporters are responsible for ensuring the accuracy of all data entered into the booking system.<br>
                 Booking slots are available in 15-minute intervals.<br>
@@ -143,7 +141,6 @@
             </div>
         </main>
 
-        <!-- Footer only for login page -->
         <footer>
             <p>2024 - Demo Website created by Carlie Solomon, Carla Meyer, Fia de Bruyn and Francois Joubert</p>
         </footer>
@@ -162,9 +159,9 @@
                 <input type="date" id="date" name="date" required><br>
 
                 <label for="time-slot">Time Slot:</label>
-				<select id="time-slot" name="time-slot" required>
-					<!-- JavaScript will populate this with 15-minute intervals -->
-				</select><br>
+                <select id="time-slot" name="time-slot" required>
+                    <!-- JavaScript will populate this with 15-minute intervals -->
+                </select><br>
 
                 <label for="container-info">Container Info:</label>
                 <select id="container-info" name="container-info" required>
@@ -173,16 +170,20 @@
                     <option value="Open Top Container">Open Top Container</option>
                     <option value="Other">Other</option>
                 </select><br>
-				
-				<label for="container-size">Container Size:</label>
-				<select id="container-size" name="container-size" required>
-					<option value="20ft">20ft</option>
-					<option value="40ft">40ft</option>
-				</select><br>
+                
+                <label for="container-size">Container Size:</label>
+                <select id="container-size" name="container-size" required>
+                    <option value="20ft">20ft</option>
+                    <option value="40ft">40ft</option>
+                </select><br>
 
                 <button type="button" onclick="bookSlot()">Book Slot</button>
             </form>
         </main>
+
+        <footer>
+            <p>2024 - Demo Website created by Carlie Solomon, Carla Meyer, Fia de Bruyn and Francois Joubert</p>
+        </footer>
     </div>
 
     <!-- Booking Success Page -->
@@ -194,33 +195,34 @@
         <main>
             <h2>Booking Successful</h2>
             <p>Your booking is confirmed. Here is your barcode:</p>
-            
-            <!-- Barcode Image with reduced size -->
             <img src="barcode.png" alt="Barcode" style="max-width: 50%; height: auto;">
         </main>
+
+        <footer>
+            <p>2024 - Demo Website created by Carlie Solomon, Carla Meyer, Fia de Bruyn and Francois Joubert</p>
+        </footer>
     </div>
 
     <script>
-		function populateTimeSlots() {
-			const timeSlotSelect = document.getElementById('time-slot');
-			const startTime = 0; // Midnight
-			const endTime = 24 * 60; // 24 hours in minutes
+        function populateTimeSlots() {
+            const timeSlotSelect = document.getElementById('time-slot');
+            const startTime = 0; // Midnight
+            const endTime = 24 * 60; // 24 hours in minutes
 
-			for (let time = startTime; time < endTime; time += 15) {
-				const hours = String(Math.floor(time / 60)).padStart(2, '0');
-				const minutes = String(time % 60).padStart(2, '0');
-				const timeString = `${hours}:${minutes}`;
-				const option = document.createElement('option');
-				option.value = timeString;
-				option.textContent = timeString;
-				timeSlotSelect.appendChild(option);
-			}
-		}
+            for (let time = startTime; time < endTime; time += 15) {
+                const hours = String(Math.floor(time / 60)).padStart(2, '0');
+                const minutes = String(time % 60).padStart(2, '0');
+                const timeString = `${hours}:${minutes}`;
+                const option = document.createElement('option');
+                option.value = timeString;
+                option.textContent = timeString;
+                timeSlotSelect.appendChild(option);
+            }
+        }
 
-		// Call the function to populate the time slots when the page loads
-		window.onload = populateTimeSlots;
-	
-	
+        // Call the function to populate the time slots when the page loads
+        window.onload = populateTimeSlots;
+
         function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
