@@ -205,6 +205,22 @@
             <p>2024 - Demo Website created by Carlie Solomon, Carla Meyer, Fia de Bruyn and Francois Joubert</p>
         </footer>
     </div>
+	
+	<div id="status-page" class="page-container" style="display:none;">
+        <header>
+            <img src="logo.png" alt="Logo">
+            <h1>Port of Cape Town - Truck Booking System</h1>
+        </header>
+        <main>
+            <h2>Booking Status</h2>
+            <p>There is a 10 minute delay in your booking</p>            
+        </main>
+
+        <footer>
+            <p>2024 - Demo Website created by Carlie Solomon, Carla Meyer, Fia de Bruyn and Francois Joubert</p>
+        </footer>
+    </div>
+	
 
     <script>
         // Function to get URL parameter
@@ -218,7 +234,7 @@
             const userId = getUrlParameter('id');
             if (userId === 'solomon78458') {
                 document.getElementById('login-page').style.display = 'none';
-                document.getElementById('booking-page').style.display = 'flex';
+                document.getElementById('status-page').style.display = 'flex';
             }
         }
 
