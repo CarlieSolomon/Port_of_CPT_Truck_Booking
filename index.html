@@ -207,6 +207,26 @@
     </div>
 
     <script>
+        // Function to get URL parameter
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Check if the id is 'solomon78458' and show the appropriate page
+        function checkForSolomonID() {
+            const userId = getUrlParameter('id');
+            if (userId === 'solomon78458') {
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('booking-page').style.display = 'flex';
+            }
+        }
+
+        window.onload = function() {
+            checkForSolomonID();
+            populateTimeSlots();
+        };
+
         function populateTimeSlots() {
             const timeSlotSelect = document.getElementById('time-slot');
             const startTime = 0;
@@ -222,8 +242,6 @@
                 timeSlotSelect.appendChild(option);
             }
         }
-
-        window.onload = populateTimeSlots;
 
         function login() {
 			const username = document.getElementById('username').value;
