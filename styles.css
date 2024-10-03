@@ -200,8 +200,8 @@
             // Reset button colors before validation
             loginButton.classList.remove('success', 'error');
 
-            // Check if the username is "solomon" and the password is "1234"
-            if (username === 'solomon' && password === '1234') {
+            // Check if the username is "user" and the password is "1234"
+            if (username === 'user' && password === '1234') {
                 // If correct, change button to green and redirect
                 loginButton.classList.add('success');
                 setTimeout(function() {
