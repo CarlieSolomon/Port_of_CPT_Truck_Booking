@@ -3,7 +3,7 @@ function login() {
     const password = document.getElementById("password").value;
 
     // Check if the username and password match the correct values
-    if (username === "solomon" && password === "1234") {
+    if (username === "user" && password === "1234") {
         // If correct, hide the login page and show the booking page
         document.getElementById("login-page").style.display = "none";
         document.getElementById("booking-page").style.display = "block";
